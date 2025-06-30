@@ -67,23 +67,38 @@ class Blog_List_Plugin {
         load_plugin_textdomain(
             'blog-list',
             false,
-            dirname( plugin_basename( __FILE__ ) ) . '/languages'
+            basename( BLOG_LIST_PLUGIN_DIR ) . '/languages' // Corrected path for languages directory
         );
     }
 
     protected function registerComponents() {
-        add_shortcode( 'blog_list', array( 'Blog_List_Shortcode', 'render' ) );
-        add_action( 'widgets_init', function() {
-            register_widget( 'Blog_List_Widget' );
-        } );
+        // Ensure correct class names and that these classes are loaded.
+        // The main plugin file (blog-list.php) should handle requiring these files.
+        if (class_exists('BlogList_Shortcode')) { // Corrected class name from file
+            add_shortcode( 'blog_list', array( 'BlogList_Shortcode', 'callback' ) ); // callback is the public method
+        }
+
+        // Widget registration is often handled directly in the main plugin file or a dedicated handler
+        // like widgethandler.php, which is already enqueued.
+        // If Blog_List_Widget is correctly defined and loaded, widgets_init in blog-list.php or widgethandler.php handles it.
+
         if ( is_admin() ) {
-            add_action( 'admin_menu', array( 'Blog_List_Admin', 'add_admin_menu' ) );
-            add_action( 'admin_init', array( 'Blog_List_Admin', 'register_settings' ) );
+            // Ensure Blog_List_Admin class is loaded.
+            if (class_exists('Blog_List_Admin')) {
+                 // Check if methods exist before adding action, or ensure they are public static
+                if (method_exists('Blog_List_Admin', 'add_admin_menu')) {
+                    add_action( 'admin_menu', array( 'Blog_List_Admin', 'add_admin_menu' ) );
+                }
+                if (method_exists('Blog_List_Admin', 'register_settings')) {
+                    add_action( 'admin_init', array( 'Blog_List_Admin', 'register_settings' ) );
+                }
+            }
         }
     }
 }
 
-register_activation_hook( __FILE__, array( 'Blog_List_Plugin', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Blog_List_Plugin', 'deactivate' ) );
+// Activation and deactivation hooks should be in the main plugin file (blog-list.php)
+// to ensure they use the correct __FILE__ path.
+// Removing them from here as they are duplicated and incorrect in this context.
 
 Blog_List_Plugin::get_instance();

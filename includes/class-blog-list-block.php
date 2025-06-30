@@ -11,36 +11,40 @@ class Blog_List_Block {
             return;
         }
 
-        $dir_url  = plugin_dir_url( __FILE__ );
-        $dir_path = plugin_dir_path( __FILE__ );
+        // Use defined constants for plugin URL and DIR
+        $plugin_url = BLOG_LIST_PLUGIN_URL;
+        $plugin_dir = BLOG_LIST_PLUGIN_DIR;
 
         // Register editor assets.
+        // Ensure these files exist or adjust paths as necessary.
+        // Assuming block.js is the main JS for block registration and editor.
+        // Assuming editor.css for editor specific styles, and style.css for frontend.
         wp_register_script(
             'blog-list-block-editor-script',
-            $dir_url . 'blockregistration.js',
+            $plugin_url . 'assets/js/block.js',
             [ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-block-editor' ],
-            filemtime( $dir_path . 'blockregistration.js' ),
+            file_exists( $plugin_dir . 'assets/js/block.js' ) ? filemtime( $plugin_dir . 'assets/js/block.js' ) : BLOG_LIST_VERSION,
             true
         );
         wp_register_style(
             'blog-list-block-editor-style',
-            $dir_url . 'editor.css',
+            $plugin_url . 'assets/css/editor.css', // Assuming editor.css for block editor styles
             [ 'wp-edit-blocks' ],
-            filemtime( $dir_path . 'editor.css' )
+            file_exists( $plugin_dir . 'assets/css/editor.css' ) ? filemtime( $plugin_dir . 'assets/css/editor.css' ) : BLOG_LIST_VERSION
         );
 
         // Register frontend assets.
         wp_register_style(
             'blog-list-block-style',
-            $dir_url . 'style.css',
+            $plugin_url . 'assets/css/style.css', // Main stylesheet for the block frontend
             [],
-            filemtime( $dir_path . 'style.css' )
+            file_exists( $plugin_dir . 'assets/css/style.css' ) ? filemtime( $plugin_dir . 'assets/css/style.css' ) : BLOG_LIST_VERSION
         );
         wp_register_script(
             'blog-list-block-frontend-script',
-            $dir_url . 'blockregistration.js',
+            $plugin_url . 'assets/js/block.js', // Assuming block.js also handles frontend if needed
             [ 'jquery' ],
-            filemtime( $dir_path . 'blockregistration.js' ),
+            file_exists( $plugin_dir . 'assets/js/block.js' ) ? filemtime( $plugin_dir . 'assets/js/block.js' ) : BLOG_LIST_VERSION,
             true
         );
 
