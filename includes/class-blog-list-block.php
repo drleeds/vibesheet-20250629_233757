@@ -165,4 +165,4 @@ class Blog_List_Block {
     }
 }
 
-new Blog_List_Block();
+// new Blog_List_Block(); // Self-instantiation removed; handled by Blog_List_Plugin class.

@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
 class Blog_List_Admin { // Renamed class
 
     private $option_group = 'blog_list_settings_group';

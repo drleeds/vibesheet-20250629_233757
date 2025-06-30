@@ -20,18 +20,7 @@ class BlogList_Shortcode {
         'modified',
     );
 
-    public function __construct() {
-        $this->register();
-    }
-
-    /**
-     * Register the [blog_list] shortcode, if not already registered.
-     */
-    public function register() {
-        if ( ! shortcode_exists( 'blog_list' ) ) {
-            add_shortcode( 'blog_list', array( $this, 'callback' ) );
-        }
-    }
+    // Constructor and self-registration removed. Instantiation and registration will be handled by the main plugin class.
 
     /**
      * Shortcode callback.
@@ -162,4 +151,4 @@ class BlogList_Shortcode {
     }
 }
 
-new BlogList_Shortcode();
+// new BlogList_Shortcode(); // Self-instantiation removed.
