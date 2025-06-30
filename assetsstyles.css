@@ -1,0 +1,217 @@
+/* Base Container */
+.content-archive-clipboard {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #222;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* Filter Panel */
+.content-archive-clipboard .cacp-filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.content-archive-clipboard .cacp-filter-panel label {
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+.content-archive-clipboard .cacp-filter-panel input[type="date"],
+.content-archive-clipboard .cacp-filter-panel select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccd0d4;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 1rem;
+}
+.content-archive-clipboard .cacp-filter-panel input[type="date"]:focus,
+.content-archive-clipboard .cacp-filter-panel select:focus {
+  border-color: #0073aa;
+  box-shadow: 0 0 0 2px rgba(0,115,170,0.2);
+}
+
+/* Buttons */
+.content-archive-clipboard .cacp-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.content-archive-clipboard .cacp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.content-archive-clipboard .cacp-button:focus {
+  box-shadow: 0 0 0 2px rgba(0,115,170,0.3);
+}
+.content-archive-clipboard .cacp-button--primary {
+  background-color: #0073aa;
+  color: #fff;
+  border-color: #006799;
+}
+.content-archive-clipboard .cacp-button--primary:hover {
+  background-color: #006799;
+}
+.content-archive-clipboard .cacp-button--secondary {
+  background-color: #f1f1f1;
+  color: #333;
+  border-color: #ccc;
+}
+.content-archive-clipboard .cacp-button--secondary:hover {
+  background-color: #e1e1e1;
+}
+.content-archive-clipboard .cacp-button[disabled],
+.content-archive-clipboard .cacp-button.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* List of Posts */
+.content-archive-clipboard .cacp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.content-archive-clipboard .cacp-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+.content-archive-clipboard .cacp-list-item:last-child {
+  border-bottom: none;
+}
+.content-archive-clipboard .cacp-post-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #0073aa;
+}
+.content-archive-clipboard .cacp-post-title:hover {
+  text-decoration: underline;
+}
+.content-archive-clipboard .cacp-post-date {
+  flex-shrink: 0;
+  margin-left: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Pagination */
+.content-archive-clipboard .cacp-pagination {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+.content-archive-clipboard .cacp-pagination li a,
+.content-archive-clipboard .cacp-pagination li span {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  color: #0073aa;
+  border: 1px solid #ccd0d4;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.content-archive-clipboard .cacp-pagination li a:hover {
+  background-color: #f1f1f1;
+}
+.content-archive-clipboard .cacp-pagination li .current {
+  background-color: #0073aa;
+  color: #fff;
+  border-color: #006799;
+}
+.content-archive-clipboard .cacp-pagination li .disabled {
+  color: #aaa;
+  cursor: not-allowed;
+  background: none;
+  border-color: #e1e1e1;
+}
+
+/* Loading Spinner */
+.content-archive-clipboard .cacp-spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid rgba(0,0,0,0.1);
+  border-left-color: #0073aa;
+  border-radius: 50%;
+  animation: cacp-spin 1s linear infinite;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+@keyframes cacp-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Disable animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .content-archive-clipboard .cacp-spinner {
+    animation: none;
+  }
+}
+
+/* Alerts & Toasts */
+.content-archive-clipboard .cacp-alert {
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  border: 1px solid #d9d9d9;
+  border-left-width: 4px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #333;
+  position: relative;
+}
+.content-archive-clipboard .cacp-alert--success {
+  border-left-color: #46b450;
+}
+.content-archive-clipboard .cacp-alert--error {
+  border-left-color: #dc3232;
+}
+
+/* Export Options */
+.content-archive-clipboard .cacp-export-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.content-archive-clipboard .cacp-export-options select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccd0d4;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .content-archive-clipboard .cacp-filter-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .content-archive-clipboard .cacp-buttons {
+    justify-content: flex-start;
+  }
+  .content-archive-clipboard .cacp-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .content-archive-clipboard .cacp-post-date {
+    margin: 0.5rem 0 0;
+  }
+}
